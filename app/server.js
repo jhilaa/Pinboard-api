@@ -108,6 +108,20 @@ app.get('/api/domain/:domain/groups', cors(), async (req, res) => {
   }
 });
 
+app.get('/api/domain/:domain/sites',  cors (), async (req, res) => {
+  try {
+    const domainName = req.params.domain;
+    // Make an HTTP GET request to the back-end
+    const getUrl =baseUrl+ "/sites?filterByFormula=AND({domain}=\""+domainName+"\")";
+    const response = await axios.get(getUrl, config);
+    // Send the data as the response to the client
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Error fetching data'});
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server live on port ${PORT}`);
