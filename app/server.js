@@ -141,6 +141,12 @@ app.post('/api/site/',  cors (), async (req, res) => {
   try {
     const postData = req.body;
     const getUrl =baseUrl+ "/sites";
+    console.error("req.body ------------");
+    console.error(req.body);
+    console.error("getUrl -----------");
+    console.error(getUrl);
+    console.error("config -----------");
+    console.error(config);
     const response = await axios.patch(getUrl, postData,  config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
