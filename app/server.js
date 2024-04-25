@@ -147,7 +147,7 @@ app.post('/api/site/',  cors (), async (req, res) => {
     console.error(getUrl);
     console.error("config -----------");
     console.error(config);
-    const response = await axios.patch(getUrl, postData,  config);
+    const response = await axios.post(getUrl, postData,  config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
   } catch (error) {
