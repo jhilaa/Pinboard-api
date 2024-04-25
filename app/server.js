@@ -37,35 +37,6 @@ app.get('/api/pin/all',  cors (), async (req, res) => {
   }
 });
 
-app.get('/api/pin/:id/pin',  cors (), async (req, res) => {
-  try {
-    const pinId = req.params.id;
-    // Make an HTTP GET request to the back-end
-    const getUrl = baseUrl+ "/pins/"+pinId ;
-    const response = await axios.patch(getUrl, config);
-    // Send the data as the response to the client
-    res.status(response.status).json(response.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({error: 'Error fetching data'});
-  }
-});
-
-app.patch('/api/pin/',  cors (), async (req, res) => {
-  try {
-    const postData = req.body;
-    // Make an HTTP GET request to the back-end
-    const getUrl = baseUrl+ "/pins";
-    const response = await axios.patch(getUrl, postData, config);
-    // Send the data as the response to the client
-    res.status(response.status).json(response.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({error: 'Error fetching data'});
-  }
-});
-
-
 app.get('/api/tag/all', cors (), async (req, res) => {
   console.log ("-- /api/tag/all -------")
   try {
@@ -150,6 +121,35 @@ app.get('/api/domain/:domain/sites',  cors (), async (req, res) => {
     res.status(500).json({error: 'Error fetching data'});
   }
 });
+
+//-------------------------
+app.patch('/api/pin/',  cors (), async (req, res) => {
+  try {
+    const postData = req.body;
+    const getUrl =baseUrl+ "/pins";
+    const response = await axios.patch(getUrl, postData,  config);
+    // Send the data as the response to the client
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Error fetching data'});
+  }
+});
+
+//-------------------------
+app.post('/api/site/',  cors (), async (req, res) => {
+  try {
+    const postData = req.body;
+    const getUrl =baseUrl+ "/sites";
+    const response = await axios.patch(getUrl, postData,  config);
+    // Send the data as the response to the client
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Error fetching data'});
+  }
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
