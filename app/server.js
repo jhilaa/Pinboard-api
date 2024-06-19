@@ -25,7 +25,6 @@ const config = {
 };
 
 app.get('/api/pin/all',  cors (), async (req, res) => {
-  console.log ("-- /api/pin/all -------")
   try {
     // Make an HTTP GET request to the back-end
     const response = await axios.get(baseUrl+ "/pins", config);
@@ -65,11 +64,11 @@ app.get('/api/domain/all', cors (), async (req, res) => {
   }
 });
 
-app.get('/api/domain/:domain/pins',  cors (), async (req, res) => {
+app.get('/api/domain/:domainId/pins',  cors (), async (req, res) => {
   try {
-    const domainId = req.params.domain;
+    const domainId = req.params.domainId;
     // Make an HTTP GET request to the back-end
-    const getUrl = baseUrl+ "/pins?filterByFormula=AND({domain}=\""+domainId+"\")";
+    const getUrl = baseUrl+ "/pins?filterByFormula=AND({domainId}=\""+domainId+"\")";
     const response = await axios.get(getUrl, config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
@@ -79,11 +78,11 @@ app.get('/api/domain/:domain/pins',  cors (), async (req, res) => {
   }
 });
 
-app.get('/api/domain/:domain/tags',  cors (), async (req, res) => {
+app.get('/api/domain/:domainId/tags',  cors (), async (req, res) => {
   try {
     const domainId = req.params.domain;
     // Make an HTTP GET request to the back-end
-    const getUrl =baseUrl+ "/tags?filterByFormula=AND({domain}=\""+domainId+"\")";
+    const getUrl =baseUrl+ "/tags?filterByFormula=AND({domainId}=\""+domainId+"\")";
     const response = await axios.get(getUrl, config);
         // Send the data as the response to the client
         res.status(response.status).json(response.data);
@@ -93,11 +92,11 @@ app.get('/api/domain/:domain/tags',  cors (), async (req, res) => {
   }
 });
 
-app.get('/api/domain/:domain/groups', cors(), async (req, res) => {
+app.get('/api/domain/:domainId/groups', cors(), async (req, res) => {
   try {
     const domainId = req.params.domain;
     // Make an HTTP GET request to the back-end
-    const getUrl = baseUrl + "/groups?filterByFormula=(domain=\"" + domainId + "\")&sort%5B0%5D%5Bfield%5D=order&sort%5B0%5D%5Bdirection%5D=desc";
+    const getUrl = baseUrl + "/groups?filterByFormula=(domainId=\"" + domainId + "\")&sort%5B0%5D%5Bfield%5D=order&sort%5B0%5D%5Bdirection%5D=desc";
     //const getUrl = "https://api.airtable.com/v0/app7zNJoX11DY99UA/groups?filterByFormula=(domain=\"Maths\")&sort%5B0%5D%5Bfield%5D=order&sort%5B0%5D%5Bdirection%5D=desc"
     const response = await axios.get(getUrl, config);
     // Send the data as the response to the client
@@ -108,11 +107,11 @@ app.get('/api/domain/:domain/groups', cors(), async (req, res) => {
   }
 });
 
-app.get('/api/domain/:domain/sites',  cors (), async (req, res) => {
+app.get('/api/domain/:domainId/sites',  cors (), async (req, res) => {
   try {
     const domainId = req.params.domain;
     // Make an HTTP GET request to the back-end
-    const getUrl =baseUrl+ "/sites?filterByFormula=AND({domain}=\""+domainId+"\")";
+    const getUrl =baseUrl+ "/sites?filterByFormula=AND({domainId}=\""+domainId+"\")";
     const response = await axios.get(getUrl, config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
