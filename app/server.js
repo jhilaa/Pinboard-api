@@ -124,9 +124,10 @@ app.get('/api/domain/:domainId/sites',  cors (), async (req, res) => {
 //-------------------------
 app.patch('/api/pin/',  cors (), async (req, res) => {
   try {
-    const postData = req.body;
-    const getUrl =baseUrl+ "/pins";
-    const response = await axios.patch(getUrl, postData,  config);
+	const pinId = req.body.id
+    const fields = {"fields" : req.body.data};
+    const getUrl =baseUrl+ "/pins/"+pinId;
+    const response = await axios.patch(getUrl, const fields,  config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
   } catch (error) {
@@ -153,7 +154,7 @@ app.patch('/api/site/',  cors (), async (req, res) => {
   try {
     const postData = req.body;
     const getUrl = baseUrl+ "/sites";
-    const response = await axios.post(getUrl, postData,  config);
+    const response = await axios.patch(getUrl, postData,  config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
   } catch (error) {
