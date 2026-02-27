@@ -124,12 +124,12 @@ app.get('/api/domain/:domainId/sites',  cors (), async (req, res) => {
 //-------------------------
 app.patch('/api/pin/',  cors (), async (req, res) => {
   try {
-	console.log ("******************");
+	console.log ("****************");
 	console.log ("req.body");
 	console.log (req.body);
-	console.log ("******************");
+	console.log ("****************");
 	const pinId = req.body.id
-    const fields = {"fields" : req.data};
+    const fields = {"fields" : req.body.data};
     const getUrl = baseUrl+ "/pins/"+pinId;
 	console.log ("getUrl :"  +getUrl)
     const response = await axios.patch(getUrl, fields,  config);
