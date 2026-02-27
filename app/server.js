@@ -131,7 +131,7 @@ app.patch('/api/pin/',  cors (), async (req, res) => {
 	const pinId = req.body.id
     const fields = {"fields" : req.body.data};
     const getUrl = baseUrl+ "/pins/"+pinId;
-	console.log ("getUrl" : +getUrl)
+	console.log ("getUrl :"  +getUrl)
     const response = await axios.patch(getUrl, const fields,  config);
     // Send the data as the response to the client
     res.status(response.status).json(response.data);
