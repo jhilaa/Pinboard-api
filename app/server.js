@@ -3,6 +3,9 @@ const cors = require('cors');
 const axios = require('axios');
 const app = express();
 require('dotenv').config();
+console.log("///////////****************************\\\\\\\\\\\\");
+console.log("API_TOKEN loaded:", process.env.API_TOKEN);
+
 
 // Middleware
 app.use(express.json());
@@ -32,6 +35,8 @@ app.get('/api/pin/all',  cors (), async (req, res) => {
     res.status(response.status).json(response.data);
   } catch (error) {
     console.error(error);
+	console.log("Airtable error:", error.response?.status);
+	console.log("Airtable data:", error.response?.data);
     res.status(500).json({error: 'Error fetching data'});
   }
 });
