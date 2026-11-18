@@ -1,0 +1,2 @@
+lancer le mini serveur  python3 -m http.server 8080
+puis http://localhost:8080
